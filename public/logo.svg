@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- Dark navy background gradient -->
+    <radialGradient id="bgGrad" cx="38%" cy="32%" r="70%">
+      <stop offset="0%" stop-color="#0D1E35"/>
+      <stop offset="100%" stop-color="#050810"/>
+    </radialGradient>
+    <!-- Ball gradient (white to light grey) -->
+    <radialGradient id="ballGrad" cx="35%" cy="30%" r="72%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="55%" stop-color="#EDF2F7"/>
+      <stop offset="100%" stop-color="#CBD5E0"/>
+    </radialGradient>
+    <!-- Green ring gradient -->
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#006B39"/>
+      <stop offset="50%" stop-color="#00924F"/>
+      <stop offset="100%" stop-color="#00D97E"/>
+    </linearGradient>
+    <!-- Glow behind ball -->
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00D97E" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#00D97E" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Text gradient -->
+    <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00924F"/>
+      <stop offset="100%" stop-color="#00D97E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer circle background -->
+  <circle cx="100" cy="100" r="97" fill="url(#bgGrad)"/>
+
+  <!-- Green glow ring -->
+  <circle cx="100" cy="100" r="97" fill="none" stroke="url(#ringGrad)" stroke-width="3.5"/>
+
+  <!-- Inner subtle ring -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#00924F" stroke-width="0.5" opacity="0.25"/>
+
+  <!-- Glow behind ball -->
+  <circle cx="100" cy="84" r="56" fill="url(#glowGrad)"/>
+
+  <!-- Football -->
+  <circle cx="100" cy="84" r="46" fill="url(#ballGrad)"/>
+
+  <!-- Pentagon patches — classic football (Telstar-style) -->
+  <!-- Central top pentagon -->
+  <polygon points="100,56 119,70 112,91 88,91 81,70" fill="#0A1628" stroke="#0D1E35" stroke-width="1.2" stroke-linejoin="round" opacity="0.92"/>
+  <!-- Right patch -->
+  <polygon points="122,68 139,72 137,91 121,97 113,83" fill="#0A1628" stroke="#0D1E35" stroke-width="1.2" stroke-linejoin="round" opacity="0.88"/>
+  <!-- Left patch -->
+  <polygon points="78,68 61,72 63,91 79,97 87,83" fill="#0A1628" stroke="#0D1E35" stroke-width="1.2" stroke-linejoin="round" opacity="0.88"/>
+  <!-- Bottom right patch -->
+  <polygon points="112,93 128,101 125,116 111,120 101,108" fill="#0A1628" stroke="#0D1E35" stroke-width="1.2" stroke-linejoin="round" opacity="0.82"/>
+  <!-- Bottom left patch -->
+  <polygon points="88,93 72,101 75,116 89,120 99,108" fill="#0A1628" stroke="#0D1E35" stroke-width="1.2" stroke-linejoin="round" opacity="0.82"/>
+
+  <!-- Ball highlight shine -->
+  <ellipse cx="87" cy="68" rx="13" ry="6" fill="white" opacity="0.45" transform="rotate(-22, 87, 68)"/>
+
+  <!-- "FOOTIX" brand text -->
+  <text
+    x="100" y="158"
+    text-anchor="middle"
+    font-family="Arial Black, Impact, Arial, sans-serif"
+    font-size="26"
+    font-weight="900"
+    fill="url(#textGrad)"
+    letter-spacing="3.5"
+  >FOOTIX</text>
+
+  <!-- Thin accent line under text -->
+  <line x1="62" y1="165" x2="138" y2="165" stroke="#00924F" stroke-width="1.5" opacity="0.6" stroke-linecap="round"/>
+
+  <!-- Small decorative dots (like field markings) -->
+  <circle cx="34" cy="100" r="2" fill="#00924F" opacity="0.3"/>
+  <circle cx="166" cy="100" r="2" fill="#00924F" opacity="0.3"/>
+</svg>

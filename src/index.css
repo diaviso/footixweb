@@ -1,0 +1,856 @@
+@import "tailwindcss";
+
+/* Configure dark mode to use class selector */
+@variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   FOOTIX — ROUGE & OR DESIGN SYSTEM
+   Primary: Crimson Red (#C41E3A)
+   Dark BG: Deep Navy (#07090F)
+   Gold: Trophy Gold (#D4AF37) — accent
+   ============================================ */
+
+@theme {
+  /* Football brand colors */
+  --color-brand-red: #C41E3A;
+  --color-brand-red-light: #E74C5E;
+  --color-brand-red-dark: #9B1B30;
+  --color-brand-gold: #D4AF37;
+  --color-brand-gold-light: #E5C158;
+  --color-brand-gold-dark: #B8960F;
+  --color-brand-navy: #07090F;
+  --color-brand-navy-light: #0D1525;
+
+  /* Light mode semantic colors */
+  --color-background: #F0F4F8;
+  --color-foreground: #0A1628;
+  --color-card: #ffffff;
+  --color-card-foreground: #0A1628;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #0A1628;
+  --color-primary: #C41E3A;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #FEF2F2;
+  --color-secondary-foreground: #C41E3A;
+  --color-muted: #EFF3F7;
+  --color-muted-foreground: #64748B;
+  --color-accent: #FDF2F3;
+  --color-accent-foreground: #9B1B30;
+  --color-destructive: #DC2626;
+  --color-destructive-foreground: #ffffff;
+  --color-success: #3B82F6;
+  --color-success-foreground: #ffffff;
+  --color-warning: #D4AF37;
+  --color-warning-foreground: #ffffff;
+  --color-border: #DCE6F0;
+  --color-input: #DCE6F0;
+  --color-ring: #C41E3A;
+  --radius: 0.75rem;
+
+  /* Sidebar */
+  --color-sidebar: #ffffff;
+  --color-sidebar-foreground: #64748B;
+  --color-sidebar-accent: #FDF2F3;
+  --color-sidebar-border: #DCE6F0;
+}
+
+:root {
+  /* ---- Light Mode: Clean Stadium Day ---- */
+  --bg-color: #F0F4F8;
+  --fg-color: #0A1628;
+  --card-color: #ffffff;
+  --card-fg-color: #0A1628;
+  --popover-color: #ffffff;
+  --popover-fg-color: #0A1628;
+  --primary-color: #C41E3A;
+  --primary-fg-color: #ffffff;
+  --secondary-color: #FEF2F2;
+  --secondary-fg-color: #C41E3A;
+  --muted-color: #EFF3F7;
+  --muted-fg-color: #64748B;
+  --accent-color: #FDF2F3;
+  --accent-fg-color: #9B1B30;
+  --destructive-color: #DC2626;
+  --destructive-fg-color: #ffffff;
+  --success-color: #3B82F6;
+  --success-fg-color: #ffffff;
+  --warning-color: #D4AF37;
+  --warning-fg-color: #ffffff;
+  --border-color: #DCE6F0;
+  --input-color: #DCE6F0;
+  --ring-color: #C41E3A;
+
+  /* Football brand */
+  --brand-red: #C41E3A;
+  --brand-red-light: #E74C5E;
+  --brand-red-dark: #9B1B30;
+  --brand-gold: #D4AF37;
+  --brand-gold-light: #E5C158;
+  --brand-gold-dark: #B8960F;
+  --brand-navy: #0A1628;
+
+  /* Sidebar — Light */
+  --sidebar-bg-color: #ffffff;
+  --sidebar-fg-color: #64748B;
+  --sidebar-accent-color: #FDF2F3;
+  --sidebar-border-color: #DCE6F0;
+
+  /* Legacy hsl compatibility */
+  --background: 210 25% 95%;
+  --foreground: 220 60% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 60% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 60% 10%;
+  --primary: 350 73% 44%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 100% 97%;
+  --secondary-foreground: 350 73% 44%;
+  --muted: 210 20% 94%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 350 60% 97%;
+  --accent-foreground: 345 70% 36%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 217 91% 60%;
+  --success-foreground: 0 0% 100%;
+  --warning: 45 64% 52%;
+  --warning-foreground: 0 0% 100%;
+  --border: 210 25% 88%;
+  --input: 210 25% 88%;
+  --ring: 350 73% 44%;
+}
+
+.dark {
+  /* ---- Dark Mode: Stadium Night ---- */
+  --bg-color: #07090F;
+  --fg-color: #E2E8F5;
+  --card-color: #0D1525;
+  --card-fg-color: #E2E8F5;
+  --popover-color: #0D1525;
+  --popover-fg-color: #E2E8F5;
+  --primary-color: #E74C5E;
+  --primary-fg-color: #ffffff;
+  --secondary-color: #111B2E;
+  --secondary-fg-color: #E74C5E;
+  --muted-color: #111B2E;
+  --muted-fg-color: #5E7A9A;
+  --accent-color: #2D0A10;
+  --accent-fg-color: #E74C5E;
+  --destructive-color: #EF4444;
+  --destructive-fg-color: #ffffff;
+  --success-color: #60A5FA;
+  --success-fg-color: #000000;
+  --warning-color: #E5C158;
+  --warning-fg-color: #000000;
+  --border-color: #1B2B40;
+  --input-color: #1B2B40;
+  --ring-color: #E74C5E;
+
+  /* Football brand — Dark */
+  --brand-red: #E74C5E;
+  --brand-red-light: #FF6B7A;
+  --brand-red-dark: #D43B4F;
+  --brand-gold: #E5C158;
+  --brand-gold-light: #FFCF42;
+  --brand-gold-dark: #D97706;
+  --brand-navy: #E2E8F5;
+
+  /* Sidebar — Dark */
+  --sidebar-bg-color: #050810;
+  --sidebar-fg-color: #5E7A9A;
+  --sidebar-accent-color: #2D0A10;
+  --sidebar-border-color: #1B2B40;
+
+  /* Legacy hsl compatibility */
+  --background: 228 43% 5%;
+  --foreground: 213 50% 92%;
+  --card: 222 40% 11%;
+  --card-foreground: 213 50% 92%;
+  --popover: 222 40% 11%;
+  --popover-foreground: 213 50% 92%;
+  --primary: 352 75% 60%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 219 45% 13%;
+  --secondary-foreground: 352 75% 60%;
+  --muted: 219 45% 13%;
+  --muted-foreground: 213 24% 48%;
+  --accent: 345 60% 11%;
+  --accent-foreground: 352 75% 60%;
+  --destructive: 0 72% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --success: 217 92% 68%;
+  --success-foreground: 0 0% 0%;
+  --warning: 45 72% 63%;
+  --warning-foreground: 0 0% 0%;
+  --border: 217 40% 18%;
+  --input: 217 40% 18%;
+  --ring: 352 75% 60%;
+}
+
+/* ============================================
+   GLOBAL BASE STYLES
+   ============================================ */
+
+* {
+  border-color: var(--border-color);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--fg-color);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ============================================
+   FOOTBALL BRAND GRADIENTS
+   ============================================ */
+
+.gradient-primary {
+  background: linear-gradient(135deg, #C41E3A 0%, #E74C5E 100%);
+}
+
+.gradient-field {
+  background: linear-gradient(135deg, #9B1B30 0%, #C41E3A 50%, #E74C5E 100%);
+}
+
+.gradient-stadium {
+  background: linear-gradient(135deg, #07090F 0%, #0D1525 50%, #111B2E 100%);
+}
+
+.gradient-trophy {
+  background: linear-gradient(135deg, #B8960F 0%, #D4AF37 50%, #E5C158 100%);
+}
+
+.gradient-brand {
+  background: linear-gradient(135deg, #9B1B30 0%, #C41E3A 50%, #E74C5E 100%);
+}
+
+.gradient-night {
+  background: linear-gradient(135deg, #050810 0%, #07090F 40%, #0D1525 100%);
+}
+
+.gradient-mesh {
+  background:
+    radial-gradient(at 0% 0%, rgba(196, 30, 58, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(231, 76, 94, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(196, 30, 58, 0.06) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(155, 27, 48, 0.08) 0px, transparent 50%);
+}
+
+.dark .gradient-mesh {
+  background:
+    radial-gradient(at 0% 0%, rgba(231, 76, 94, 0.12) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(212, 59, 79, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(231, 76, 94, 0.06) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(196, 30, 58, 0.05) 0px, transparent 50%);
+}
+
+/* ============================================
+   TEXT GRADIENTS
+   ============================================ */
+
+.text-gradient {
+  background: linear-gradient(135deg, #C41E3A 0%, #E74C5E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .text-gradient {
+  background: linear-gradient(135deg, #E74C5E 0%, #FF6B7A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #B8960F 0%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark .text-gradient-gold {
+  background: linear-gradient(135deg, #E5C158 0%, #FFD700 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   FOOTBALL PATTERN BACKGROUNDS
+   ============================================ */
+
+/* Subtle hexagonal ball panel pattern */
+.pitch-hex-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='30 2 58 17 58 47 30 62 2 47 2 17' fill='none' stroke='rgba(255,255,255,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 60px 52px;
+}
+
+.dark .pitch-hex-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='52' viewBox='0 0 60 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='30 2 58 17 58 47 30 62 2 47 2 17' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3C/svg%3E");
+}
+
+/* Football field line grid */
+.pitch-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Jersey diagonal stripes */
+.jersey-pattern {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(255,255,255,0.03) 20px,
+    rgba(255,255,255,0.03) 40px
+  );
+}
+
+/* ============================================
+   GLASS EFFECTS
+   ============================================ */
+
+.glass {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(196, 30, 58, 0.1);
+}
+
+.dark .glass {
+  background-color: rgba(13, 21, 37, 0.85);
+  border-color: rgba(231, 76, 94, 0.1);
+}
+
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 1rem;
+  border: 1px solid rgba(196, 30, 58, 0.08);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 4px 8px rgba(0, 0, 0, 0.04),
+    0 16px 32px rgba(0, 0, 0, 0.06);
+}
+
+.dark .glass-card {
+  background-color: rgba(13, 21, 37, 0.95);
+  border-color: rgba(231, 76, 94, 0.1);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    0 4px 8px rgba(0, 0, 0, 0.25),
+    0 16px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   CARD UTILITIES
+   ============================================ */
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 10px 20px rgba(0, 0, 0, 0.06),
+    0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.dark .card-hover:hover {
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.2),
+    0 10px 20px rgba(0, 0, 0, 0.3),
+    0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Stadium red glow on hover */
+.card-hover-glow:hover {
+  box-shadow: 0 0 0 1px rgba(231, 76, 94, 0.2), 0 4px 24px rgba(231, 76, 94, 0.08);
+}
+
+.card-color {
+  background-color: #ffffff !important;
+}
+
+.dark .card-color {
+  background-color: #0D1525 !important;
+}
+
+.light-card {
+  background-color: #ffffff !important;
+}
+
+.dark .light-card {
+  background-color: #0D1525 !important;
+}
+
+/* ============================================
+   TAILWIND v4 OVERRIDES (runtime theming)
+   ============================================ */
+
+.bg-card {
+  background-color: var(--card-color) !important;
+}
+
+.bg-background {
+  background-color: var(--bg-color) !important;
+}
+
+.bg-popover {
+  background-color: var(--popover-color) !important;
+}
+
+.bg-muted {
+  background-color: var(--muted-color) !important;
+}
+
+.bg-accent {
+  background-color: var(--accent-color) !important;
+}
+
+.bg-secondary {
+  background-color: var(--secondary-color) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.text-card-foreground {
+  color: var(--card-fg-color) !important;
+}
+
+.text-foreground {
+  color: var(--fg-color) !important;
+}
+
+.text-muted-foreground {
+  color: var(--muted-fg-color) !important;
+}
+
+.text-popover-foreground {
+  color: var(--popover-fg-color) !important;
+}
+
+.text-accent-foreground {
+  color: var(--accent-fg-color) !important;
+}
+
+.text-secondary-foreground {
+  color: var(--secondary-fg-color) !important;
+}
+
+.text-primary-foreground {
+  color: var(--primary-fg-color) !important;
+}
+
+.border-border {
+  border-color: var(--border-color) !important;
+}
+
+.border-input {
+  border-color: var(--input-color) !important;
+}
+
+.ring-ring {
+  --tw-ring-color: var(--ring-color) !important;
+}
+
+/* ============================================
+   FOOTBALL SCORE / STATS ELEMENTS
+   ============================================ */
+
+/* Score badge — like a match scoreboard */
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.375rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* Rank number — jersey style */
+.rank-number {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Stat label — match stats style (uppercase) */
+.stat-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-fg-color);
+}
+
+/* ============================================
+   FOOTBALL DECORATION — PITCH LINE
+   ============================================ */
+
+.pitch-line-glow {
+  box-shadow: 0 0 20px rgba(231, 76, 94, 0.15), 0 0 60px rgba(231, 76, 94, 0.05);
+}
+
+.dark .pitch-line-glow {
+  box-shadow: 0 0 30px rgba(231, 76, 94, 0.2), 0 0 80px rgba(231, 76, 94, 0.08);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-spin-slow {
+  animation: spin 12s linear infinite;
+}
+
+.animate-score-reveal {
+  animation: score-reveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+.animate-whistle-shake {
+  animation: whistle-shake 0.4s ease-in-out;
+}
+
+.animate-spotlight-sweep {
+  animation: spotlight-sweep 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-16px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px -10px var(--primary-color); }
+  to { box-shadow: 0 0 30px -5px var(--primary-color); }
+}
+
+@keyframes score-reveal {
+  0% { transform: scale(0.5); filter: blur(6px); opacity: 0; }
+  60% { transform: scale(1.1); filter: blur(0); opacity: 1; }
+  100% { transform: scale(1); filter: blur(0); opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes whistle-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px) rotate(-1deg); }
+  40% { transform: translateX(4px) rotate(1deg); }
+  60% { transform: translateX(-3px) rotate(-0.5deg); }
+  80% { transform: translateX(2px) rotate(0.5deg); }
+}
+
+@keyframes spotlight-sweep {
+  0% { background-position: -100% 0; }
+  50% { background-position: 200% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* ============================================
+   SCOREBOARD TEXT — LED / Monospace style
+   ============================================ */
+
+.scoreboard-text {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* ============================================
+   STADIUM SPOTLIGHT — Radial gradient overlay
+   ============================================ */
+
+.stadium-spotlight {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(231, 76, 94, 0.12) 0%,
+    transparent 70%
+  );
+}
+
+.dark .stadium-spotlight {
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 0%,
+    rgba(231, 76, 94, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+/* ============================================
+   PITCH LINE — Decorative separator
+   ============================================ */
+
+.pitch-line {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-color) 20%,
+    var(--primary-color) 50%,
+    var(--border-color) 80%,
+    transparent 100%
+  );
+  opacity: 0.5;
+}
+
+.pitch-line::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+  background: var(--bg-color);
+}
+
+/* ============================================
+   MATCH STRIPE BACKGROUND — Subtle diagonals
+   ============================================ */
+
+.match-stripe-bg {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(196, 30, 58, 0.03) 10px,
+    rgba(196, 30, 58, 0.03) 20px
+  );
+}
+
+.dark .match-stripe-bg {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 10px,
+    rgba(231, 76, 94, 0.03) 10px,
+    rgba(231, 76, 94, 0.03) 20px
+  );
+}
+
+/* ============================================
+   SHIMMER BORDER — Premium golden shimmer
+   ============================================ */
+
+.shimmer-border {
+  background: linear-gradient(
+    90deg,
+    var(--border-color) 0%,
+    #D4AF37 25%,
+    #E5C158 50%,
+    #D4AF37 75%,
+    var(--border-color) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+/* ============================================
+   LIVE INDICATOR — Pulsing dot
+   ============================================ */
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #EF4444;
+  position: relative;
+}
+
+.live-dot::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: #EF4444;
+  opacity: 0.4;
+  animation: pulse-slow 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-color) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--muted-fg-color);
+  opacity: 0.3;
+  border-radius: 2px;
+}
+
+/* ============================================
+   TIPTAP EDITOR STYLES
+   ============================================ */
+
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: var(--muted-fg-color);
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.ProseMirror pre {
+  background: #0D1525;
+  color: #E2E8F5;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+}
+
+.ProseMirror pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.875rem;
+}
+
+.ProseMirror code {
+  background-color: var(--muted-color);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--muted-fg-color);
+}
+
+.ProseMirror hr {
+  border: none;
+  border-top: 2px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+.ProseMirror mark {
+  background-color: #fef08a;
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.2rem;
+}
+
+.dark .ProseMirror mark {
+  background-color: #854d0e;
+  color: #fef08a;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5rem;
+}
+
+.ProseMirror ul {
+  list-style-type: disc;
+}
+
+.ProseMirror ol {
+  list-style-type: decimal;
+}
+
+.ProseMirror h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ProseMirror a:hover {
+  opacity: 0.8;
+}
