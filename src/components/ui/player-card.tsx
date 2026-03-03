@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { cn, getAvatarUrl } from '@/lib/utils';

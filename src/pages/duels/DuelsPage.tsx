@@ -1248,7 +1248,6 @@ function ResultsView({
 
   const diff = DIFFICULTY_CONFIG[duel.difficulty as keyof typeof DIFFICULTY_CONFIG];
   const sorted = [...duel.participants].sort((a, b) => (a.rank || 99) - (b.rank || 99));
-  const winner = sorted[0];
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="max-w-lg mx-auto">

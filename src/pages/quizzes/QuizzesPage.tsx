@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import {
   Plus,
   Search,
-  Clock,
   Target,
   Star,
   Play,
@@ -68,12 +67,6 @@ interface QuizWithCount {
   _count?: { questions: number };
   userStatus?: UserStatus;
 }
-
-const difficultyGlow: Record<string, string> = {
-  FACILE: 'shadow-blue-500/20',
-  MOYEN: 'shadow-[#D4AF37]/20',
-  DIFFICILE: 'shadow-red-500/20',
-};
 
 export function QuizzesPage() {
   const navigate = useNavigate();

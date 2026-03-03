@@ -32,7 +32,6 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Dialog,
   DialogContent,
@@ -43,7 +42,6 @@ import {
 } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/hooks/use-toast';
 import { useAuthStore } from '@/store/auth';
 import { cn } from '@/lib/utils';
@@ -51,7 +49,6 @@ import api from '@/lib/api';
 import { fireThemeCompletion, fireTrophyCelebration } from '@/components/ui/confetti';
 import { staggerContainer, staggerItem, scoreReveal, countdownPulse } from '@/lib/animations';
 import { ScoreboardHeader } from '@/components/ui/scoreboard-header';
-import { MatchCard } from '@/components/ui/match-card';
 import { StaminaBar } from '@/components/ui/stamina-bar';
 
 interface Option {
@@ -80,12 +77,6 @@ interface Quiz {
   theme?: { title: string };
   questions: Question[];
 }
-
-const difficultyColors = {
-  FACILE: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-blue-200',
-  MOYEN: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 border-amber-200',
-  DIFFICILE: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400 border-rose-200',
-};
 
 const difficultyAccent: Record<string, string> = {
   FACILE: '#3B82F6',

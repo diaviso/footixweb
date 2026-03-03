@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -10,10 +10,8 @@ import {
   Award,
   Zap,
   Swords,
-  Layers,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ScoreboardHeader } from '@/components/ui/scoreboard-header';
 import { StaminaBar } from '@/components/ui/stamina-bar';
 import { useAuthStore } from '@/store/auth';
 import { cn, getAvatarUrl } from '@/lib/utils';

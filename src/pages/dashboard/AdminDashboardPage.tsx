@@ -10,15 +10,11 @@ import {
   UserPlus,
   Shield,
   Zap,
-  Swords,
   BookOpen,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { ScoreboardHeader } from '@/components/ui/scoreboard-header';
-import { PlayerCard } from '@/components/ui/player-card';
-import { StaminaBar } from '@/components/ui/stamina-bar';
 import { useAuthStore } from '@/store/auth';
 import { staggerContainer, staggerItem } from '@/lib/animations';
 import { cn } from '@/lib/utils';

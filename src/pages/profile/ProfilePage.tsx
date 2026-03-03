@@ -14,7 +14,7 @@ import {
   Gem,
   Pencil,
 } from 'lucide-react';
-import { cn, getAvatarUrl } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/store/auth';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -41,11 +41,6 @@ export function ProfilePage() {
     country: user?.country || '',
     city: user?.city || '',
   });
-
-  const getInitials = () => {
-    if (!user) return 'U';
-    return `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase();
-  };
 
   const handlePhotoUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
