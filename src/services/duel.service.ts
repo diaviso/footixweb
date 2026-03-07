@@ -63,6 +63,14 @@ export interface DuelQuestionsResponse {
   startedAt: string;
 }
 
+export interface SearchUser {
+  id: string;
+  firstName: string;
+  lastName: string;
+  avatar: string | null;
+  email: string;
+}
+
 export const duelService = {
   async create(data: { maxParticipants: number; difficulty: string }): Promise<Duel> {
     const response = await api.post('/duels', data);
@@ -101,6 +109,16 @@ export const duelService = {
 
   async leave(id: string): Promise<{ message: string }> {
     const response = await api.delete(`/duels/${id}/leave`);
+    return response.data;
+  },
+
+  async searchUsers(query: string): Promise<SearchUser[]> {
+    const response = await api.get(`/duels/search-users?q=${encodeURIComponent(query)}`);
+    return response.data;
+  },
+
+  async invite(duelId: string, userId: string): Promise<Duel> {
+    const response = await api.post(`/duels/${duelId}/invite`, { userId });
     return response.data;
   },
 };

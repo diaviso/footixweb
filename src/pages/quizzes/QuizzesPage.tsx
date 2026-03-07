@@ -206,9 +206,8 @@ export function QuizzesPage() {
     return matchesSearch && matchesDifficulty && matchesTheme;
   });
 
-  // Separate featured (first quiz) from rest
-  const featuredQuiz = filteredQuizzes[0];
-  const restQuizzes = filteredQuizzes.slice(1);
+  // All quizzes go into the same grid — no featured card separation
+  const restQuizzes = filteredQuizzes;
 
   return (
     <div className="space-y-6">
@@ -289,41 +288,7 @@ export function QuizzesPage() {
           <p className="text-[#5E7A9A]">{searchQuery ? 'Essayez une autre recherche' : 'Commencez par créer un quiz'}</p>
         </div>
       ) : (
-        <motion.div variants={staggerContainer(0.06)} initial="hidden" animate="visible">
-          {/* Featured quiz (full width) */}
-          {featuredQuiz && (
-            <motion.div variants={staggerItem} className="mb-4">
-              <MatchCard
-                title={featuredQuiz.title}
-                subtitle={featuredQuiz.theme?.title}
-                difficulty={featuredQuiz.difficulty}
-                score={featuredQuiz.userStatus?.bestScore}
-                timeLimit={featuredQuiz.timeLimit}
-                passingScore={featuredQuiz.passingScore}
-                questionCount={featuredQuiz._count?.questions || 0}
-                isPremium={!featuredQuiz.isFree}
-                isLocked={!!featuredQuiz.userStatus && !featuredQuiz.userStatus.isUnlocked}
-                isPassed={featuredQuiz.userStatus?.hasPassed}
-                isFeatured
-                onClick={() => navigate(`/quizzes/${featuredQuiz.id}`)}
-              >
-                {/* Admin controls */}
-                {isAdmin && (
-                  <div className="flex gap-1 mt-3">
-                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={(e) => { e.stopPropagation(); handleOpenDialog(featuredQuiz); }}>
-                      <Edit className="h-3.5 w-3.5" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive" onClick={(e) => { e.stopPropagation(); handleDelete(featuredQuiz.id); }}>
-                      <Trash2 className="h-3.5 w-3.5" />
-                    </Button>
-                  </div>
-                )}
-              </MatchCard>
-            </motion.div>
-          )}
-
-          {/* Grid: mix of cards */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <motion.div variants={staggerContainer(0.06)} initial="hidden" animate="visible" className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
             {restQuizzes.map((quiz) => {
               const status = quiz.userStatus;
               const isLocked = status && !status.isUnlocked;
@@ -412,7 +377,6 @@ export function QuizzesPage() {
                 </motion.div>
               );
             })}
-          </div>
         </motion.div>
       )}
 

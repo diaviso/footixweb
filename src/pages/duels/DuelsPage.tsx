@@ -27,8 +27,9 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ScoreboardHeader } from '@/components/ui/scoreboard-header';
 import { UserAvatar } from '@/components/ui/user-avatar';
 import { useAuthStore } from '@/store/auth';
+import { Input } from '@/components/ui/input';
 import { duelService } from '@/services/duel.service';
-import type { Duel, DuelListItem, DuelQuestion } from '@/services/duel.service';
+import type { Duel, DuelListItem, DuelQuestion, SearchUser } from '@/services/duel.service';
 import { cn } from '@/lib/utils';
 import {
   staggerContainer,
@@ -666,6 +667,11 @@ function LobbyView({
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState<SearchUser[]>([]);
+  const [searching, setSearching] = useState(false);
+  const [inviting, setInviting] = useState<string | null>(null);
+  const searchTimeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const pollRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   // Poll for updates every 3 seconds
@@ -712,6 +718,37 @@ function LobbyView({
       setError(err.response?.data?.message || 'Erreur');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSearch = (value: string) => {
+    setSearchQuery(value);
+    if (searchTimeoutRef.current) clearTimeout(searchTimeoutRef.current);
+    if (value.trim().length < 2) { setSearchResults([]); return; }
+    setSearching(true);
+    searchTimeoutRef.current = setTimeout(async () => {
+      try {
+        const results = await duelService.searchUsers(value);
+        // Filter out users already in the duel
+        const participantIds = duel.participants.map((p) => p.id);
+        setSearchResults(results.filter((u) => !participantIds.includes(u.id)));
+      } catch { setSearchResults([]); }
+      finally { setSearching(false); }
+    }, 400);
+  };
+
+  const handleInvite = async (userId: string) => {
+    try {
+      setInviting(userId);
+      setError('');
+      const updated = await duelService.invite(duel.id, userId);
+      onDuelUpdate(updated);
+      setSearchQuery('');
+      setSearchResults([]);
+    } catch (err: any) {
+      setError(err.response?.data?.message || 'Impossible d\'inviter ce joueur');
+    } finally {
+      setInviting(null);
     }
   };
 
@@ -768,6 +805,53 @@ function LobbyView({
           <p className="text-[10px] text-[#5E7A9A] mt-2 uppercase tracking-wider">Partagez ce code</p>
         </div>
       </div>
+
+      {/* Invite a player — only for creator when not full */}
+      {duel.isCreator && !isFull && (
+        <div className="mb-6">
+          <p className="text-xs font-bold text-[#5E7A9A] uppercase tracking-wider mb-3 flex items-center gap-2">
+            <Users className="h-3.5 w-3.5" />
+            Inviter un joueur
+          </p>
+          <div className="relative">
+            <Input
+              placeholder="Rechercher par nom ou email..."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="pr-10"
+            />
+            {searching && (
+              <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-[#5E7A9A]" />
+            )}
+          </div>
+          {searchResults.length > 0 && (
+            <div className="mt-2 rounded-xl border border-[#DCE6F0] dark:border-[#1B2B40] bg-white dark:bg-[#0D1525] overflow-hidden">
+              {searchResults.map((u) => (
+                <div key={u.id} className="flex items-center gap-3 px-3 py-2.5 hover:bg-[#EFF3F7] dark:hover:bg-[#111B2E] transition-colors">
+                  <UserAvatar user={{ id: u.id, firstName: u.firstName, lastName: u.lastName, avatar: u.avatar }} size="sm" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-[#0A1628] dark:text-[#E2E8F5] truncate">{u.firstName} {u.lastName}</p>
+                    <p className="text-[10px] text-[#5E7A9A] truncate">{u.email}</p>
+                  </div>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="text-xs h-7 gap-1"
+                    disabled={inviting === u.id}
+                    onClick={() => handleInvite(u.id)}
+                  >
+                    {inviting === u.id ? <Loader2 className="h-3 w-3 animate-spin" /> : <Plus className="h-3 w-3" />}
+                    Inviter
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+          {searchQuery.length >= 2 && !searching && searchResults.length === 0 && (
+            <p className="text-xs text-[#5E7A9A] mt-2 text-center italic">Aucun joueur trouvé</p>
+          )}
+        </div>
+      )}
 
       {/* Participants — sliding entrance */}
       <div className="mb-6">
