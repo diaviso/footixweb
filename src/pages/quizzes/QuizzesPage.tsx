@@ -296,6 +296,15 @@ export function QuizzesPage() {
               const isPremiumValid = user?.isPremium && (!user?.premiumExpiresAt || new Date(user.premiumExpiresAt) > new Date());
               const needsPremium = !quiz.isFree && !isPremiumValid && !isAdmin;
 
+              // Determine attempt status for visual distinction
+              const attemptStatus: 'won' | 'attempted' | 'failed' | 'none' = hasPassed
+                ? 'won'
+                : status?.isCompleted && !hasPassed
+                  ? 'failed'
+                  : (status?.totalAttempts ?? 0) > 0
+                    ? 'attempted'
+                    : 'none';
+
               return (
                 <motion.div key={quiz.id} variants={staggerItem}>
                   <MatchCard
@@ -309,6 +318,7 @@ export function QuizzesPage() {
                     isPremium={needsPremium}
                     isLocked={!!isLocked}
                     isPassed={hasPassed}
+                    attemptStatus={attemptStatus}
                     onClick={() => {
                       if (needsPremium) navigate('/premium');
                       else navigate(`/quizzes/${quiz.id}`);

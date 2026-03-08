@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Clock, Target, Lock, Crown } from 'lucide-react';
+import { Star, Clock, Target, Lock, Crown, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const difficultyAccent: Record<string, string> = {
@@ -15,6 +15,8 @@ const difficultyLabel: Record<string, string> = {
   DIFFICILE: 'Difficile',
 };
 
+export type AttemptStatus = 'won' | 'attempted' | 'failed' | 'none';
+
 export interface MatchCardProps {
   title: string;
   subtitle?: string;
@@ -27,6 +29,7 @@ export interface MatchCardProps {
   isPremium?: boolean;
   isLocked?: boolean;
   isPassed?: boolean;
+  attemptStatus?: AttemptStatus;
   isFeatured?: boolean;
   ribbon?: string;
   onClick?: () => void;
@@ -46,6 +49,7 @@ export function MatchCard({
   isPremium,
   isLocked,
   isPassed,
+  attemptStatus = 'none',
   isFeatured,
   ribbon,
   onClick,
@@ -54,6 +58,22 @@ export function MatchCard({
 }: MatchCardProps) {
   const accent = difficulty ? difficultyAccent[difficulty] : '#C41E3A';
 
+  const statusBorder = attemptStatus === 'won'
+    ? 'border-emerald-300 dark:border-emerald-700/60'
+    : attemptStatus === 'failed'
+      ? 'border-rose-300 dark:border-rose-700/60'
+      : attemptStatus === 'attempted'
+        ? 'border-amber-300 dark:border-amber-700/60'
+        : '';
+
+  const statusBg = attemptStatus === 'won'
+    ? 'bg-emerald-50/50 dark:bg-emerald-950/20'
+    : attemptStatus === 'failed'
+      ? 'bg-rose-50/50 dark:bg-rose-950/20'
+      : attemptStatus === 'attempted'
+        ? 'bg-amber-50/30 dark:bg-amber-950/10'
+        : '';
+
   return (
     <motion.div
       whileHover={!isLocked ? { y: -6, boxShadow: `0 12px 32px ${accent}22` } : undefined}
@@ -61,7 +81,9 @@ export function MatchCard({
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       onClick={onClick}
       className={cn(
-        'relative overflow-hidden rounded-2xl border border-[#DCE6F0] dark:border-[#1B2B40] bg-white dark:bg-[#0D1525] cursor-pointer group',
+        'relative overflow-hidden rounded-2xl border bg-white dark:bg-[#0D1525] cursor-pointer group',
+        statusBorder || 'border-[#DCE6F0] dark:border-[#1B2B40]',
+        statusBg,
         isFeatured && 'col-span-full',
         isLocked && 'opacity-70 grayscale cursor-not-allowed',
         isPremium && !isLocked && 'animate-shimmer',
@@ -123,9 +145,19 @@ export function MatchCard({
                 {difficultyLabel[difficulty]}
               </span>
             )}
-            {isPassed && (
-              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
-                Réussi
+            {attemptStatus === 'won' && (
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 flex items-center gap-0.5">
+                <CheckCircle className="h-2.5 w-2.5" /> Réussi
+              </span>
+            )}
+            {attemptStatus === 'attempted' && (
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 flex items-center gap-0.5">
+                <RotateCcw className="h-2.5 w-2.5" /> En cours
+              </span>
+            )}
+            {attemptStatus === 'failed' && (
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400 flex items-center gap-0.5">
+                <XCircle className="h-2.5 w-2.5" /> Échoué
               </span>
             )}
           </div>
